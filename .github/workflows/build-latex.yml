@@ -22,6 +22,7 @@ jobs:
           datetime_now=$(date +'%Y-%m-%dT%H:%M:%S')
           filename=type-systems-$datetime_now-$sha_short.pdf
           echo "filename=$filename" >> $GITHUB_OUTPUT
+          echo "sha_short=$sha_short" >> $GITHUB_OUTPUT
           mv type-systems.pdf $filename
       - name: Create Release
         id: create_release
@@ -29,7 +30,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: latest
+          tag_name: ${{ steps.rename_file.outputs.sha_short }}
           release_name: Release ${{ steps.rename_file.outputs.filename }}
           draft: false
           prerelease: false
