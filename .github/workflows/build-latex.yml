@@ -15,11 +15,6 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: type-systems.tex
-#      - name: Upload PDF file
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: PDF
-#          path: type-systems.pdf
       - name: Rename file
         id: rename_file
         run: |
